@@ -1,5 +1,5 @@
 import Debug.Trace (trace)
-import Data.Maybe (fromMaybe)
+import Data.Maybe (fromJust)
 
 winLen = 3
 memLen = winLen -1
@@ -20,7 +20,7 @@ stackDepths = foldl step (Nothing, 0)
     step :: (Maybe Int, Int) -> Int -> (Maybe Int, Int)
     step (last, count) n
       | last == Nothing = (Just n, count + 1)
-      | otherwise = (Just n, if n > fromMaybe 0 last then count + 1 else count)
+      | otherwise = (Just n, if n > fromJust last then count + 1 else count)
 
 
 main :: IO ()
